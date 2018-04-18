@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
 import {loadDecks} from '../actions'
 import {getDecks} from '../utils/api'
 import { connect } from 'react-redux'
@@ -15,22 +15,31 @@ class Decks extends Component {
     ready: false,
   }
 
+  componentWillReceiveProps(props){
+    if (props.decks){
+      this.setState({ready: true})
+    } 
+  }
 
   componentDidMount () {
-    const { loadDecks } = this.props
-    //getDecks().then((decks) => loadDecks(decks)).then(() => this.setState(() => ({ready: true})))
+    this.props.loadDecks()
   }
 
   render() {
-    const { entries } = this.props
+    const { entrie,decks } = this.props
     const { ready } = this.state
 
+    const listDecks = Object.values(decks)
     if (ready === false) {
       return <LoadingControl />
     }
     return (
       <View>
         <Text>Decks view </Text>
+        <FlatList
+          data={listDecks}
+          renderItem={({item}) => <Text>{item.title}</Text>}
+        />
       </View>
     )
   }

@@ -3,6 +3,7 @@ import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions'
 function entries (state = {}, action) {
   switch (action.type) {
     case LOAD_DECKS :
+
       return {
         ...state,
         ...action.decks,

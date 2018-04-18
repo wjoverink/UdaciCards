@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Platform, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
 import reducers from './reducers'
 import { blue, white } from './utils/colors'
@@ -10,6 +10,7 @@ import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
+import thunk from 'redux-thunk'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 
 
@@ -78,7 +79,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={createStore(reducers, applyMiddleware(thunk))}>
         <View style={{flex: 1}}>
           <CardsStatusBar backgroundColor={blue} barStyle="light-content" />
           <MainNavigator />
