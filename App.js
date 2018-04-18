@@ -5,7 +5,7 @@ import { Constants } from 'expo'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from './reducers'
-import { purple, white } from './utils/colors'
+import { blue, white } from './utils/colors'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import AddCard from './components/AddCard'
@@ -41,10 +41,14 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    activeTintColor: Platform.OS === 'ios' ? blue : white,
+    labelStyle: {
+      fontSize: 16,
+      fontWeight: 'bold'
+    },
     style: {
-      height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      
+      backgroundColor: Platform.OS === 'ios' ? white : blue,
       // shadowColor: 'rgba(0, 0, 0, 0.24)',
       // shadowOffset: {
       //   width: 0,
@@ -65,7 +69,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: blue,
       }
     }
   }
@@ -76,7 +80,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducers)}>
         <View style={{flex: 1}}>
-          <CardsStatusBar backgroundColor={purple} barStyle="light-content" />
+          <CardsStatusBar backgroundColor={blue} barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
