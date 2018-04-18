@@ -1,16 +1,19 @@
-import { RECEIVE_ENTRIES, ADD_ENTRY } from '../actions'
+import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions'
 
 function entries (state = {}, action) {
   switch (action.type) {
-    case RECEIVE_ENTRIES :
+    case LOAD_DECKS :
       return {
         ...state,
-        ...action.entries,
+        ...action.decks,
       }
-    case ADD_ENTRY :
+    case ADD_DECK :
       return {
         ...state,
-        ...action.entry
+      }
+    case ADD_CARD :
+      return {
+        ...state,
       }
     default :
       return state

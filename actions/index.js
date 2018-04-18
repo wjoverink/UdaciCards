@@ -1,16 +1,25 @@
-export const RECEIVE_ENTRIES = 'RECEIVE_ENTRIES'
-export const ADD_ENTRY = 'ADD_ENTRY'
+export const LOAD_DECKS = 'LOAD_DECKS'
+export const ADD_DECK = 'ADD_DECK'
+export const ADD_CARD = 'ADD_CARD'
 
-export function receiveEntries (entries) {
+export function loadDecks(decks) {
   return {
-    type: RECEIVE_ENTRIES,
-    entries,
+    type: LOAD_DECKS,
+    decks,
   }
 }
 
-export function addEntry (entry) {
+export function addDeck (deckTitle) {
   return {
-    type: ADD_ENTRY,
-    entry,
+    type: ADD_DECK,
+    deckTitle,
   }
 }
+
+export function addCard (deckTitle, card) {
+    return {
+      type: ADD_CARD,
+      deckTitle,
+      card
+    }
+  }
