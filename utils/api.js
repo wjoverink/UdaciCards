@@ -1,23 +1,67 @@
 import { AsyncStorage } from 'react-native'
-import { formatCalendarResults, FLASHCARDS_STORAGE_KEY } from './_udacicards'
+export const FLASHCARDS_STORAGE_KEY = 'UdaciCards:flashcards'
 
-export function fetchCalendarResults () {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-    .then(formatCardsResults)
+function setDummyData() {
+    const dummies = {
+        React: {
+            title: 'React',
+            questions: [
+                {
+                    question: 'What is React?',
+                    answer: 'A library for managing user interfaces'
+                },
+                {
+                    question: 'Where do you make Ajax requests in React?',
+                    answer: 'The componentDidMount lifecycle event'
+                }
+            ]
+        },
+        JavaScript: {
+            title: 'JavaScript',
+            questions: [
+                {
+                    question: 'What is a closure?',
+                    answer: 'The combination of a function and the lexical environment within which that function was declared.'
+                }
+            ]
+        }
+
+    }
+
+    saveDecks(dummies)
+    return dummies
 }
 
-export function submitEntry ({ entry, key }) {
-  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
-    [key]: entry
-  }))
+function parseDecks(results) {
+    return (results) ? JSON.parse(results) : setDummyData()
 }
 
-export function removeEntry (key) {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-    .then((results) => {
-      const data = JSON.parse(results)
-      data[key] = undefined
-      delete data[key]
-      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data))
-    })
+function saveDecks(decks) {
+    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
+}
+
+export function getDecks() {
+    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
+}
+
+export function getDeck(id) {
+   //TODO
+}
+
+export function removeDeck(id) {
+    //TODO
+}
+
+export function saveDeckTitle(deckTitle) {
+    //TODO
+    saveDecks(getDecks())
+}
+
+
+export function addCardToDeck(deckTitle, { question, answer }) {
+    //TODO
+}
+
+export function removeCard(id) {
+    //TODO
 }
