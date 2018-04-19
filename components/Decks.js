@@ -47,7 +47,7 @@ class Decks extends Component {
 
   renderItem = ({item}) => {
     return    <TouchableOpacity>
-        <Card title={item.title}>
+        <Card containerStyle={styles.cardContainer} title={item.title}>
           <Text  style={styles.cardText}>
             {item.questions.length} cards
           </Text>
@@ -80,7 +80,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    padding: 0
+    padding: 0,
+    margin:0
+  },
+  cardContainer: {
+    margin:9
   },
   searchBar: {
     backgroundColor: white,    
