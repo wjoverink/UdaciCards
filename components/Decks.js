@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList,TouchableOpacity } from 'react-native'
 import {loadDecks} from '../actions'
 import {getDecks} from '../utils/api'
 import { connect } from 'react-redux'
 import { AppLoading} from 'expo'
 import LoadingControl from './Loading'
+import { white } from '../utils/colors'
+import { SearchBar, Card } from 'react-native-elements'
 
 /**
 * @description Represents the Decks view
@@ -15,35 +17,80 @@ class Decks extends Component {
     ready: false,
   }
 
+  handleRefresh = () => {
+    this.setState({ready: false})
+    this.props.loadDecks()
+  }
+
   componentWillReceiveProps(props){
     if (props.decks){
       this.setState({ready: true})
     } 
   }
 
+  // getDerivedStateFromProps(nextProps, prevState){
+  //   console.log("getDerivedStateFromProps")
+  //   if (nextProps.decks){
+  //     return {
+  //       ready:true
+  //     }
+  //   }
+  // }
+
   componentDidMount () {
     this.props.loadDecks()
   }
 
-  render() {
-    const { entrie,decks } = this.props
-    const { ready } = this.state
+  renderHeader = ({item}) => {
+    return <SearchBar containerStyle={styles.searchBar} lightTheme placeholder='Type Here...'/>;
+  };
 
+  renderItem = ({item}) => {
+    return    <TouchableOpacity>
+        <Card title={item.title}>
+          <Text  style={styles.cardText}>
+            {item.questions.length} cards
+          </Text>
+        </Card>
+      </TouchableOpacity>;
+  };
+
+  render() {
+    const { decks } = this.props
+    const { ready } = this.state
     const listDecks = Object.values(decks)
-    if (ready === false) {
-      return <LoadingControl />
-    }
+    // if (ready === false) {
+    //   return <LoadingControl />
+    // }
     return (
-      <View>
-        <Text>Decks view </Text>
         <FlatList
+          style={styles.container}
           data={listDecks}
-          renderItem={({item}) => <Text>{item.title}</Text>}
+          ListHeaderComponent={this.renderHeader}
+          renderItem={this.renderItem}
+          refreshing={!ready}
+          onRefresh={this.handleRefresh}
+          stickyHeaderIndices={[0]}
         />
-      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: white,
+    padding: 0
+  },
+  searchBar: {
+    backgroundColor: white,    
+    borderBottomColor: 'transparent',
+    borderTopColor: 'transparent'
+  },
+  cardText: {
+    textAlign: "center",
+  }
+});
 
 function mapStateToProps(decks) {
   return {decks}

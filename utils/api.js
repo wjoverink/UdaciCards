@@ -40,6 +40,10 @@ function saveDecks(decks) {
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
 }
 
+export function clearDecks() {
+    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, '')
+  }
+
 export function getDecks() {
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
 }
