@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, FlatList,TouchableOpacity } from 'react-native'
-import {loadDecks} from '../actions'
-import {getDecks} from '../utils/api'
+import { Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { View } from 'react-native-animatable';
+import { loadDecks } from '../actions'
+import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
-import { AppLoading} from 'expo'
+import { AppLoading } from 'expo'
 import LoadingControl from './Loading'
 import { white } from '../utils/colors'
 import { SearchBar, Card } from 'react-native-elements'
+import MyText from './MyText'
+import ListCard from './ListCard'
 
 /**
 * @description Represents the Decks view
@@ -18,14 +21,14 @@ class Decks extends Component {
   }
 
   handleRefresh = () => {
-    this.setState({ready: false})
+    this.setState({ ready: false })
     this.props.loadDecks()
   }
 
-  componentWillReceiveProps(props){
-    if (props.decks){
-      this.setState({ready: true})
-    } 
+  componentWillReceiveProps(props) {
+    if (props.decks) {
+      this.setState({ ready: true })
+    }
   }
 
   // getDerivedStateFromProps(nextProps, prevState){
@@ -37,34 +40,31 @@ class Decks extends Component {
   //   }
   // }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadDecks()
   }
 
-  renderHeader = ({item}) => {
-    return <SearchBar containerStyle={styles.searchBar} lightTheme placeholder='Type Here...'/>;
+  renderHeader = ({ item }) => {
+    return <SearchBar
+            inputStyle={styles.searchBarInput}  
+            containerStyle={styles.searchBar} 
+            lightTheme 
+            placeholder='Type Here...' />;
   };
 
-  renderItem = ({item}) => {
-    return    <TouchableOpacity>
-        <Card containerStyle={styles.cardContainer} title={item.title}>
-          <Text  style={styles.cardText}>
-            {item.questions.length} cards
-          </Text>
-        </Card>
-      </TouchableOpacity>;
+  renderItem = ({item,index}) => {
+    return <ListCard title={item.title} questions={item.questions.length} delay={index*30}></ListCard>;
   };
 
   render() {
     const { decks } = this.props
-    const { ready } = this.state
     const listDecks = Object.values(decks)
-    // if (ready === false) {
-    //   return <LoadingControl />
-    // }
+    const { ready } = this.state
+
     return (
+      <View style={[styles.container, styles.viewContainer]}>
         <FlatList
-          style={styles.container}
+          style={[styles.container]}
           data={listDecks}
           ListHeaderComponent={this.renderHeader}
           renderItem={this.renderItem}
@@ -72,6 +72,7 @@ class Decks extends Component {
           onRefresh={this.handleRefresh}
           stickyHeaderIndices={[0]}
         />
+      </View>
     )
   }
 }
@@ -79,25 +80,25 @@ class Decks extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
-    padding: 0,
-    margin:0
+    backgroundColor: white
   },
-  cardContainer: {
-    margin:9
+  viewContainer: {
+    padding: 11,
   },
   searchBar: {
-    backgroundColor: white,    
+    backgroundColor: white,
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent'
   },
-  cardText: {
-    textAlign: "center",
-  }
+  searchBarInput:{
+    backgroundColor: white,
+    borderWidth:1,
+    borderColor:"gray"
+  },
 });
 
 function mapStateToProps(decks) {
-  return {decks}
+  return { decks }
 }
 
 export default connect(mapStateToProps, {

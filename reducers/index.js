@@ -11,10 +11,15 @@ function entries (state = {}, action) {
     case ADD_DECK :
       return {
         ...state,
+        [action.deckTitle] :{
+            title: action.deckTitle,
+            questions: []
+        }
       }
     case ADD_CARD :
       return {
         ...state,
+       
       }
     default :
       return state
