@@ -1,7 +1,6 @@
 import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions'
 
 function entries (state = {}, action) {
-  console.log("reducer")
   switch (action.type) {
     case LOAD_DECKS :
       return {

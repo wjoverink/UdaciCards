@@ -61,7 +61,7 @@ class Decks extends Component {
   }
 
   itemPressed = (item) => {
-      //TODO: open card
+    this.props.navigation.navigate('EntryDetail', {deckTitle: item.title})
   }
 
   render() {
