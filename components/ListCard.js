@@ -6,8 +6,6 @@ import { white } from '../utils/colors'
 
 
 class ListCard extends PureComponent {
-
-
     itemPressed = () => {
         if (this.props.onPress){
             this.props.onPress(this.props.dataItem)
