@@ -40,7 +40,7 @@ class Decks extends Component {
   //   }
   // }
 
-  componentDidMount() {
+  componentDidMount() { 
     this.props.loadDecks()
   }
 
@@ -53,7 +53,7 @@ class Decks extends Component {
   };
 
   renderItem = ({item,index}) => {
-    return <ListCard title={item.title} questions={item.questions.length} delay={index*30}></ListCard>;
+    return <ListCard title={item.title} style={{padding:9}} questions={item.questions.length} delay={index*40}></ListCard>;
   };
 
   render() {

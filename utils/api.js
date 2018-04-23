@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native'
-export const FLASHCARDS_STORAGE_KEY = 'UdaciCards:flashcards'
+export const FLASHCARDS_STORAGE_KEY = 'UdaciCards:Cards'
 
 function setDummyData() {
     const dummies = {
@@ -32,7 +32,8 @@ function setDummyData() {
     return dummies
 }
 
-function parseDecks(results) {
+function parseDecks(results) { 
+    console.log("api.parseDecks")   
     return (results) ? JSON.parse(results) : setDummyData()
 }
 
@@ -41,10 +42,12 @@ function saveDecks(decks) {
 }
 
 export function clearDecks() {
-    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, '')
+    console.log("api.clearDecks")
+    AsyncStorage.clear()
   }
 
 export function getDecks() {
+    console.log("api.getDecks")
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
 }
 
@@ -53,6 +56,7 @@ export function getDeck(id) {
 }
 
 export function removeDeck(id) {
+    console.log("api.removeDeck")
     //TODO
 }
 

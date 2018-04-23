@@ -9,7 +9,7 @@ class ListCard extends Component {
     render() {
         const { questions, title, style, ...props} = this.props
         return  <View 
-                    animation="bounceInUp"                     
+                    animation="bounceInDown"                     
                     {...props} 
                     style={[styles.container, style]} > 
                     <TouchableOpacity>
