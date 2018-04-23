@@ -35,10 +35,11 @@ class NewDeck extends Component {
   }
 
   render() {
-    const vals = Object.values(this.props.decks)
-    const {title} = this.state
-    const errorMessage = Object.values(this.props.decks).filter(item=> 
-      item.title.toLowerCase() === this.state.title.toLowerCase()
+    const {title} = this.state    
+    const {decks} = this.props
+
+    const errorMessage = Object.values(decks).filter(item=> 
+      item.title.toLowerCase() === title.toLowerCase()
       ).length>0 ? "Title already exists" : ""
        
      return (
