@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import { StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { View } from 'react-native-animatable'
 import MyText from './MyText'
 import { white } from '../utils/colors'
 
 
-class ListCard extends Component {
+class ListCard extends PureComponent {
 
 
     itemPressed = () => {

@@ -14,10 +14,12 @@ export const ADD_CARD = 'ADD_CARD'
 
 export const loadDecks = () => dispatch => {
   console.log("loadDecks")
-    Api.getDecks().then(payload => {
-      console.log("getDecks")
-      dispatch({type: LOAD_DECKS, decks: payload})
-    })
+  dispatch({type: LOAD_DECKS})
+  // console.log("loadDecks")
+  //   Api.getDecks().then(payload => {
+  //     console.log("getDecks")
+  //     dispatch({type: LOAD_DECKS, decks: payload})
+  //   })
   }
 
 export function addDeck (deckTitle) {

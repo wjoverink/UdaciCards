@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import { white, black } from '../utils/colors'
-import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView  } from 'react-native'
-import { FormLabel, FormInput, } from 'react-native-elements'
+import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
+import { FormLabel, Input, } from 'react-native-elements'
 import MyText from './MyText'
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+import { loadDecks } from '../actions'
 
 /**
 * @description Represents the Decks view
@@ -12,30 +14,47 @@ import { connect } from 'react-redux'
 */
 class NewDeck extends Component { 
   pressedSave = () => {
-    console.log(this.deckTitle.text)
-    // this.props.addDeck(this.deckTitle.value)
+    console.log("pressedSave")
+
+    this.props.addDeck(this.state.title)
+    this.setState({ title: '' })
+    this.props.navigation.dispatch(NavigationActions.back({key: 'NewDecks'}))
+  }
+
+  state = {
+    title:'',
+
+  }
+
+  onTextChanged = (title) =>{
+    this.setState({title})
   }
 
   componentDidMount () {
-   
+    this.props.loadDecks()
   }
 
   render() {
+    const vals = Object.values(this.props.decks)
+    const {title} = this.state
+    const errorMessage = Object.values(this.props.decks).filter(item=> 
+      item.title.toLowerCase() === this.state.title.toLowerCase()
+      ).length>0 ? "Title already exists" : ""
+       
      return (
       <KeyboardAvoidingView behavior="height" style={styles.container}>
         <MyText h1>Add a deck</MyText>
         <MyText>What is the title of your new deck?</MyText>
         <TextInput 
             autoFocus={true} 
-            ref={(deckTitle) => {
-                this.deckTitle = deckTitle;
-            }} 
+            onChangeText={this.onTextChanged}
+            value={title}
             underlineColorAndroid={'transparent'}
             editable 
             maxLength={40} />
-
         <View style={styles.saveButtonView}> 
-          <Button onPress={this.pressedSave} title="Save"/>
+          <MyText error>{errorMessage}</MyText>
+          <Button disabled={errorMessage!=="" || title===""} onPress={this.pressedSave} title="Save"/>
         </View>
        
       </KeyboardAvoidingView >
@@ -64,6 +83,7 @@ function mapStateToProps(decks) {
 }
 
 export default connect(mapStateToProps, {
-  addDeck
+  addDeck,
+  loadDecks
 })(NewDeck)
 
