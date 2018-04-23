@@ -6,13 +6,21 @@ import { white } from '../utils/colors'
 
 
 class ListCard extends Component {
+
+
+    itemPressed = () => {
+        if (this.props.onPress){
+            this.props.onPress(this.props.dataItem)
+        }
+    }
+
     render() {
-        const { questions, title, style, ...props} = this.props
+        const { questions, title, style, onPress, dataItem, ...props} = this.props
         return  <View 
                     animation="bounceInDown"                     
                     {...props} 
                     style={[styles.container, style]} > 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.itemPressed}>
                         <MyText h1>
                         {title} 
                         </MyText>

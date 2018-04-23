@@ -50,11 +50,19 @@ class Decks extends Component {
             containerStyle={styles.searchBar} 
             lightTheme 
             placeholder='Type Here...' />;
-  };
+  }
+
+  ListFooterComponent= ({ item }) => {
+    return <ListCard title={"Test"} questions={0}/>;
+  }
 
   renderItem = ({item,index}) => {
-    return <ListCard title={item.title} style={{padding:9}} questions={item.questions.length} delay={index*40}></ListCard>;
-  };
+    return <ListCard onPress={this.itemPressed} dataItem={item} title={item.title} style={{padding:9}} questions={item.questions.length} delay={index*40}></ListCard>;
+  }
+
+  itemPressed = (item) => {
+      //TODO: open card
+  }
 
   render() {
     const { decks } = this.props
@@ -71,6 +79,7 @@ class Decks extends Component {
           refreshing={!ready}
           onRefresh={this.handleRefresh}
           stickyHeaderIndices={[0]}
+          //ListFooterComponent={this.ListFooterComponent}
         />
       </View>
     )
