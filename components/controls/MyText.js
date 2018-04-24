@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { white,black,gray,red } from '../utils/colors'
+import { white,black,gray,red } from '../../utils/colors'
 import { StyleSheet, Text} from 'react-native'
 
 class MyText extends Component {
 
     render() {
-        const {h1, children, style, error} = this.props
+        const {h1, children, style={}, error} = this.props
         const myStyle =  error ? baseStyles.error : h1 ? baseStyles.h1 : baseStyles.text
         return <Text style={[myStyle, style]}>{children}</Text>
     }

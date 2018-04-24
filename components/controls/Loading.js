@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import Animation from 'lottie-react-native';
 import { DangerZone } from 'expo';
 let { Lottie } = DangerZone;
-import anim from '../assets/animations/animation-w1280-h720.json';
+import anim from '../../assets/animations/animation-w1280-h720.json';
 
 
 class LoadingControl extends Component {

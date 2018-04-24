@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { white, black } from '../utils/colors'
 import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
-import MyText from './MyText'
+import MyText from './controls/MyText'
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'

@@ -5,10 +5,9 @@ import { loadDecks } from '../actions'
 import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
 import { AppLoading } from 'expo'
-import LoadingControl from './Loading'
 import { white } from '../utils/colors'
 import { SearchBar, Card } from 'react-native-elements'
-import MyText from './MyText'
+import MyText from './controls/MyText'
 import ListCard from './ListCard'
 import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-navigation';

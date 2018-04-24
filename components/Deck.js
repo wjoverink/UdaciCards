@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet,Button  } from 'react-native'
 import { connect } from 'react-redux'
-import MyText from './MyText'
+import MyText from './controls/MyText'
 import { white } from '../utils/colors'
 
 class Deck extends Component {

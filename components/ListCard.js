@@ -1,7 +1,7 @@
 import React, { Component, PureComponent } from 'react'
 import { StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import { View } from 'react-native-animatable'
-import MyText from './MyText'
+import MyText from './controls/MyText'
 import { white } from '../utils/colors'
 
 
