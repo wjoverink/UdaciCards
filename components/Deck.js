@@ -13,11 +13,11 @@ class Deck extends Component {
       }
 
     addCardPressed = () => {
-        this.props.navigation.navigate('AddCard', {deckTitle: this.props.title})
+        this.props.navigation.navigate('AddCard', {deckTitle: this.props.deckTitle})
     }
 
     startQuizPressed = () => {
-        this.props.navigation.navigate('Quiz', {deckTitle: this.props.title})
+        this.props.navigation.navigate('Quiz', {deckTitle: this.props.deckTitle})
     }
 
     render() {

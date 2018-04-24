@@ -18,7 +18,13 @@ function entries (state = {}, action) {
     case ADD_CARD :
       return {
         ...state,
-       
+        [action.deckTitle]: {
+          ...state[action.deckTitle],
+          questions: [
+            ...state[action.deckTitle].questions,
+            action.card
+          ]
+        }
       }
     default :
       return state

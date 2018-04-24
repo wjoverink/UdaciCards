@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { white, black } from '../utils/colors'
 import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
-import { FormLabel, Input, } from 'react-native-elements'
 import MyText from './MyText'
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
@@ -56,8 +55,7 @@ class NewDeck extends Component {
         <View style={styles.saveButtonView}> 
           <MyText error>{errorMessage}</MyText>
           <Button disabled={errorMessage!=="" || title===""} onPress={this.pressedSave} title="Save"/>
-        </View>
-       
+        </View>       
       </KeyboardAvoidingView >
     )
   }

@@ -21,6 +21,7 @@ export function addDeck (deckTitle) {
 }
 
 export function addCard (deckTitle, card) {
+  console.log("addCard", deckTitle, card)
     return {
       type: ADD_CARD,
       deckTitle,

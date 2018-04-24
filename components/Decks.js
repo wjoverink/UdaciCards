@@ -17,7 +17,6 @@ if (Platform.OS === 'android') {
 }
 
 
-
 /**
 * @description Represents the Decks view
 * @constructor
