@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import MyText from './MyText'
 
 /**
 * @description Represents the Decks view
@@ -9,7 +10,7 @@ class AddCard extends Component {
   render() {
     return (
       <View>
-        <Text>Add Card</Text>
+        <MyText h1>Add Card</MyText>
       </View>
     )
   }

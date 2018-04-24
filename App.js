@@ -8,6 +8,7 @@ import reducers from './reducers'
 import { blue, white } from './utils/colors'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
+import Deck from './components/Deck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import thunk from 'redux-thunk'
@@ -50,13 +51,6 @@ const Tabs = TabNavigator({
     style: {
       
       backgroundColor: Platform.OS === 'ios' ? white : blue,
-      // shadowColor: 'rgba(0, 0, 0, 0.24)',
-      // shadowOffset: {
-      //   width: 0,
-      //   height: 3
-      // },
-      // shadowRadius: 6,
-      // shadowOpacity: 1
     }
   }
 })
@@ -66,7 +60,27 @@ const MainNavigator = StackNavigator({
     screen: Tabs,
   },
   EntryDetail: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      },
+    }
+  },
+  AddCard: {
+    title:"Add card",
     screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      },
+    }
+  },
+  Quiz: {
+    title:"Quiz",
+    screen: Quiz,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

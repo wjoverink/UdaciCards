@@ -57,7 +57,14 @@ class Decks extends Component {
   }
 
   renderItem = ({item,index}) => {
-    return <ListCard onPress={this.itemPressed} dataItem={item} title={item.title} style={{padding:9}} questions={item.questions.length} delay={index*40}></ListCard>;
+    return <ListCard 
+      onPress={this.itemPressed} 
+      dataItem={item} 
+      title={item.title} 
+      style={{padding:9}} 
+      questions={item.questions.length} 
+      delay={index*40}>
+      </ListCard>;
   }
 
   itemPressed = (item) => {
