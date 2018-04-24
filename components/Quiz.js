@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import MyText from './controls/MyText'
-import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
+import FlipCard from './FlipCard'
+import { Text, StyleSheet,  View, TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard} from '../actions'
-import { white, gray } from '../utils/colors'
+import { white, gray, red, green } from '../utils/colors'
 
 /**
 * @description Represents the Decks view
@@ -19,12 +20,14 @@ class Quiz extends Component {
   render() {
     const {index} = this.state
     const {deck} = this.props
+    const card = deck.questions[index]
     return (      
       <View style={styles.container}>
        
         <MyText>{index}/{deck.questions.length}</MyText>
-        <MyText h1>{deck.questions[index]}</MyText>
-
+        <FlipCard question={card.question} answer={card.answer}></FlipCard>
+        <Button color={green} title="Correct"/>
+        <Button color={red} title="Incorrect"/>
       </View>
     )
   }
