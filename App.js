@@ -14,11 +14,10 @@ import Quiz from './components/Quiz'
 import thunk from 'redux-thunk'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 
-
 function CardsStatusBar ({backgroundColor, ...props}) {
   return (
     <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+      <StatusBar backgroundColor={backgroundColor} {...props} />
     </View>
   )
 }
@@ -68,20 +67,20 @@ const MainNavigator = StackNavigator({
       },
     }
   },
-  AddCard: {
-    title:"Add card",
+  AddCard: {   
     screen: AddCard,
     navigationOptions: {
+      title:"Add card",
       headerTintColor: white,
       headerStyle: {
         backgroundColor: blue,
       },
     }
   },
-  Quiz: {
-    title:"Quiz",
+  Quiz: {   
     screen: Quiz,
     navigationOptions: {
+      title:"Quiz",
       headerTintColor: white,
       headerStyle: {
         backgroundColor: blue,

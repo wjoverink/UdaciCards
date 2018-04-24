@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import MyText from './MyText'
 import { white } from '../utils/colors'
 
-
-
 class Deck extends Component {
     static navigationOptions = ({ navigation }) => {
         const { deckTitle } = navigation.state.params    

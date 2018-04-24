@@ -10,6 +10,13 @@ import { white } from '../utils/colors'
 import { SearchBar, Card } from 'react-native-elements'
 import MyText from './MyText'
 import ListCard from './ListCard'
+import { Platform } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+if (Platform.OS === 'android') {
+  SafeAreaView.setStatusBarHeight(0);
+}
+
+
 
 /**
 * @description Represents the Decks view
