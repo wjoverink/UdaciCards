@@ -12,11 +12,13 @@ import animSource100 from './../assets/animations/animation-w550-h400.json'
 import animSource from './../assets/animations/animation-w512-h512.json'
 import MyButton from './controls/MyButton'
 
-function ScoreCard ({ animSource, prefix, text, score, onRestart}) {
+function ScoreCard({ animSource, prefix, text, score, onRestart }) {
   return (
     <View style={styles.container}>
-      <MyText style={styles.centerText} h1>{text}</MyText>
-      <CounterText style={[styles.centerText]} prefix={prefix} start={0} end={score} steps={score/9}/>
+      <View style={{alignItems: "center"}}>
+        <MyText style={styles.centerText} h1>{text}</MyText>
+        <CounterText style={styles.centerText} prefix={prefix} start={0} end={score} steps={score / 9} />
+      </View>
       <AnimationControl style={styles.container} source={animSource} />
       <TextButton style={[styles.centerText, { color: blue }]} onPress={onRestart}>Restart Quiz</TextButton>
     </View>
@@ -31,7 +33,7 @@ class Quiz extends Component {
   state = {
     questionIndex: 0,
     correctCount: 0
-  }  
+  }
 
   resultTrue = () => {
     this.setState((prevState) => {
@@ -42,7 +44,7 @@ class Quiz extends Component {
     })
   }
 
-  
+
   resultFalse = () => {
     this.setState((prevState) => {
       return {
@@ -53,7 +55,7 @@ class Quiz extends Component {
 
   restartQuiz = () => {
     console.log("restartQuiz")
-    this.setState({questionIndex:0, correctCount:0})
+    this.setState({ questionIndex: 0, correctCount: 0 })
   }
 
 
@@ -66,7 +68,7 @@ class Quiz extends Component {
     if (card) {
       return (
         <View style={styles.viewcontainer}>
-          <MyText style={{justifyContent:"flex-start",alignSelf:"flex-start"}}>{questionIndex + 1}/{questionLength}</MyText>
+          <MyText style={{ justifyContent: "flex-start", alignSelf: "flex-start" }}>{questionIndex + 1}/{questionLength}</MyText>
           <FlipCard style={{ flex: 1, alignSelf: "center", justifyContent: "center" }} question={card.question} answer={card.answer}></FlipCard>
           <MyButton color={green} onPress={this.resultTrue} title="Correct" />
           <MyButton color={red} onPress={this.resultFalse} title="Incorrect" />
@@ -74,24 +76,24 @@ class Quiz extends Component {
       )
     }
     const score = (correctCount / questionLength) * 100
-    if (questionLength === correctCount) {     
+    if (questionLength === correctCount) {
       return (
-        <ScoreCard 
-          animSource={animSource100} 
-          prefix={"% Score"} 
-          onRestart={this.restartQuiz} 
-          score={score} 
-          text={"Congratulations!"}/>
+        <ScoreCard
+          animSource={animSource100}
+          prefix={"% Score"}
+          onRestart={this.restartQuiz}
+          score={score}
+          text={"Congratulations!"} />
       )
-    } 
+    }
 
     return (
-      <ScoreCard 
-        animSource={animSource} 
-        prefix={"%"} 
-        onRestart={this.restartQuiz} 
-        score={score} 
-        text={"Your Score"}/>
+      <ScoreCard
+        animSource={animSource}
+        prefix={"%"}
+        onRestart={this.restartQuiz}
+        score={score}
+        text={"Your Score"} />
     )
   }
 }
@@ -99,18 +101,18 @@ class Quiz extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white, 
+    backgroundColor: white,
     padding: 20,
   },
   viewcontainer: {
     flex: 1,
-    backgroundColor: white, 
+    backgroundColor: white,
     padding: 20,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center"
   },
-  centerText:{
-    textAlign:"center"
+  centerText: {
+    textAlign: "center",
   }
 })
 

@@ -7,7 +7,7 @@ class MyButton extends PureComponent {
 
     render() {
         const { style = {}, title, invert = false, color, disabled=false, onPress, ...props } = this.props
-        const newColor = !disabled ? color || blue : gray
+        const newColor = !disabled ? color || blue : "#bbb"
         const click = !disabled ? {onPress:onPress} : {}
         return (
             <TouchableOpacity 
