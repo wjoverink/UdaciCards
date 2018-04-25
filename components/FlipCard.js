@@ -15,23 +15,23 @@ class FlipCard extends PureComponent {
   handleViewRef = ref => this.view = ref;
 
   flip = () => {
-    this.view.flipOutY(600).then((endState) => {
+    this.view.flipOutY(500).then((endState) => {
       this.setState((prevState) => {
         return {
           flip: !prevState.flip,
         }
-      }, () => this.view.flipInY(400))
+      }, () => this.view.flipInY(300))
     })
   }
 
   render() {
-    const { question, answer } = this.props
+    const { question, answer, style } = this.props
     const { flip } = this.state
     const textButton = !flip ? "Answer" : "Question"
     const text = !flip ? question : answer
 
     return (
-      <View ref={this.handleViewRef} style={styles.container}>
+      <View ref={this.handleViewRef} style={[styles.container, style]}>
         <MyText h1>{text}</MyText>
         <TextButton style={{ color: blue }} onPress={this.flip}>{textButton}</TextButton>
       </View>
@@ -41,7 +41,6 @@ class FlipCard extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
     padding: 20,
   }
 })

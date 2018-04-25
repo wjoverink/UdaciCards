@@ -36,14 +36,14 @@ class Decks extends Component {
     }
   }
 
-  // getDerivedStateFromProps(nextProps, prevState){
-  //   console.log("getDerivedStateFromProps")
-  //   if (nextProps.decks){
-  //     return {
-  //       ready:true
-  //     }
-  //   }
-  // }
+  getDerivedStateFromProps(nextProps, prevState){
+    console.log("getDerivedStateFromProps")
+    // if (nextProps.decks){
+    //   return {
+    //     ready:true
+    //   }
+    // }
+  }
 
   componentDidMount() { 
     this.props.loadDecks()

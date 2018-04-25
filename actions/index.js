@@ -7,7 +7,7 @@ export const ADD_CARD = 'ADD_CARD'
 export const loadDecks = () => dispatch => {
   //dispatch({type: LOAD_DECKS})
   console.log("loadDecks")
-    Api.getDecks().then(payload => {
+    Api.getDecksWithoutStorage().then(payload => {
       console.log("getDecks")
       dispatch({type: LOAD_DECKS, decks: payload})
     })

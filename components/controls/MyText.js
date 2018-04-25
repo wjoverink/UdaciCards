@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { white,black,gray,red } from '../../utils/colors'
 import { StyleSheet, Text} from 'react-native'
 
-class MyText extends Component {
+class MyText extends PureComponent {
 
     render() {
         const {h1, children, style={}, error} = this.props

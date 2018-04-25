@@ -46,6 +46,12 @@ export function clearDecks() {
     AsyncStorage.clear()
   }
 
+export function getDecksWithoutStorage() {
+    console.log("api.getDecks")
+    //return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
+    return new Promise((resolve, reject)=>resolve(setDummyData()))
+}
+
 export function getDecks() {
     console.log("api.getDecks")
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
