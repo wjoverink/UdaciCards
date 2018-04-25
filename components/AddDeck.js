@@ -1,61 +1,70 @@
-import React, {Component} from 'react'
-import { white, black } from '../utils/colors'
-import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
+import React, { Component } from 'react'
+import { white, black, gray} from '../utils/colors'
+import { View, Text, StyleSheet, TextInput, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import MyText from './controls/MyText'
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { loadDecks } from '../actions'
+import MyButton from './controls/MyButton'
 
 /**
 * @description Represents the Decks view
 * @constructor
 */
-class NewDeck extends Component { 
+class NewDeck extends Component {
   pressedSave = () => {
     console.log("pressedSave")
 
     this.props.addDeck(this.state.title)
     this.setState({ title: '' })
-    this.props.navigation.dispatch(NavigationActions.back({key: 'NewDecks'}))
+    this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDecks' }))
   }
 
   state = {
-    title:'',
+    title: '',
 
   }
 
-  onTextChanged = (title) =>{
-    this.setState({title})
+  onTextChanged = (title) => {
+    this.setState({ title })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadDecks()
   }
 
   render() {
-    const {title} = this.state    
-    const {decks} = this.props
+    const { title } = this.state
+    const { decks } = this.props
 
-    const errorMessage = Object.values(decks).filter(item=> 
+    const errorMessage = Object.values(decks).filter(item =>
       item.title.toLowerCase() === title.toLowerCase()
-      ).length>0 ? "Title already exists" : ""
-       
-     return (
-      <KeyboardAvoidingView behavior="height" style={styles.container}>
+    ).length > 0 ? "Title already exists" : ""
+
+    return (
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <MyText h1>Add a deck</MyText>
-        <MyText>What is the title of your new deck?</MyText>
-        <TextInput 
-            autoFocus={true} 
+        {/* <MyText>What is the title of your new deck?</MyText> */}
+        <View>
+          <TextInput
+            style={{fontSize:16, color:gray}}
+            autoFocus={true}
             onChangeText={this.onTextChanged}
             value={title}
             underlineColorAndroid={'transparent'}
-            editable 
+            editable
+            placeholder={"What is the title of your new deck?"}
             maxLength={40} />
-        <View style={styles.saveButtonView}> 
-          <MyText error>{errorMessage}</MyText>
-          <Button disabled={errorMessage!=="" || title===""} onPress={this.pressedSave} title="Save"/>
-        </View>       
+        </View>
+        <MyText error>{errorMessage}</MyText>
+        <View style={styles.saveButtonView}>
+          <MyButton 
+            
+            disabled={errorMessage !== "" || title === ""} 
+            onPress={this.pressedSave} 
+            title="Save" />
+        </View>
       </KeyboardAvoidingView >
     )
   }
@@ -65,15 +74,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    padding:20,
+    padding: 20,
   },
-  saveButtonView:{
-    flex: 1,
-    paddingBottom:20,
-    justifyContent: 'flex-end',
-    // position:"absolute",
-    // bottom:100,
-    // right:20,
+  saveButtonView: {
+    alignItems: 'center',
+    paddingTop:40
   }
 })
 

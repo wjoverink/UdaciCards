@@ -33,7 +33,7 @@ const Tabs = TabNavigator({
   NewDecks: {
     screen: NewDeck,
     navigationOptions: {
-      tabBarLabel: 'New Decks',
+      tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
     },
   }
