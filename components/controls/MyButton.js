@@ -6,10 +6,18 @@ import Mytext, { baseStyles } from './MyText'
 class MyButton extends PureComponent {
 
     render() {
-        const { style = {}, title, invert = false, color, ...props } = this.props
-        const newColor = color || blue
+        const { style = {}, title, invert = false, color, disabled=false, onPress, ...props } = this.props
+        const newColor = !disabled ? color || blue : gray
+        const click = !disabled ? {onPress:onPress} : {}
         return (
-            <TouchableOpacity style={[baseButtonStyles.button, { backgroundColor: invert ? white : newColor, borderColor:newColor }, ...style]} {...props}>
+            <TouchableOpacity 
+            style={
+                    [baseButtonStyles.button, 
+                    { backgroundColor: invert ? white : newColor, borderColor:newColor }
+                    , ...style]
+                } 
+            {...click}
+            {...props}>
                 <Mytext style={[baseStyles.text, { color: !invert ? white : newColor, textAlign: "center" }]} >{title}</Mytext>
             </TouchableOpacity>
         )

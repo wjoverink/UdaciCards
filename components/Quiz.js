@@ -65,7 +65,7 @@ class Quiz extends Component {
 
     if (card) {
       return (
-        <View style={styles.container}>
+        <View style={styles.viewcontainer}>
           <MyText style={{justifyContent:"flex-start",alignSelf:"flex-start"}}>{questionIndex + 1}/{questionLength}</MyText>
           <FlipCard style={{ flex: 1, alignSelf: "center", justifyContent: "center" }} question={card.question} answer={card.answer}></FlipCard>
           <MyButton color={green} onPress={this.resultTrue} title="Correct" />
@@ -98,6 +98,11 @@ class Quiz extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: white, 
+    padding: 20,
+  },
+  viewcontainer: {
     flex: 1,
     backgroundColor: white, 
     padding: 20,

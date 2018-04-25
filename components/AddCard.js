@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import MyText from './controls/MyText'
-import { View, Text, StyleSheet,  TextInput, Button,KeyboardAvoidingView , TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { addCard} from '../actions'
+import { addCard } from '../actions'
 import { white, gray } from '../utils/colors'
+import MyButton from './controls/MyButton'
 
 /**
 * @description Represents the Decks view
@@ -11,9 +12,9 @@ import { white, gray } from '../utils/colors'
 */
 class AddCard extends Component {
   state = {
-    question : '',
+    question: '',
     answer: '',
-    saving:false
+    saving: false
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -21,52 +22,58 @@ class AddCard extends Component {
   }
 
   onTextQuestionChanged = (question) => {
-    this.setState({question})
+    this.setState({ question })
   }
 
   onTextAnwserChanged = (answer) => {
-    this.setState({answer})
+    this.setState({ answer })
   }
 
   saveCard = (answer) => {
-    this.setState({saving:true})
-    this.props.addCard({question, answer} = this.state)
+    this.setState({ saving: true })
+    this.props.addCard({ question, answer } = this.state)
     this.props.goBack()
   }
 
 
   render() {
-    const {question, answer} = this.state
-    const errorMessageQuestion = this.props.deck.questions.filter(item=> 
+    const { question, answer } = this.state
+    const errorMessageQuestion = this.props.deck.questions.filter(item =>
       item.question.toLowerCase() === question.toLowerCase()
-      ).length>0 ? "Title already exists" : ""
+    ).length > 0 ? "Title already exists" : ""
     // const errorMessage = this.props.deck.questions.filter(item=> 
     //   item.answer.toLowerCase() === answer.toLowerCase()
     //   ).length>0 ? "Title already exists" : ""
 
-    return (      
+    return (
       <View style={styles.container}>
-        <TextInput 
-            autoFocus={true} 
-            onChangeText={this.onTextQuestionChanged}
-            value={question}
-            underlineColorAndroid={'transparent'}
-            editable
-            style={styles.textInput}
-            placeholder={"Type a question"}
-            maxLength={100} />
+        <TextInput
+          autoFocus={true}
+          onChangeText={this.onTextQuestionChanged}
+          value={question}
+          underlineColorAndroid={'transparent'}
+          editable
+          style={styles.textInput}
+          placeholder={"Type a question"}
+          maxLength={100} />
         <MyText error>{errorMessageQuestion}</MyText>
-        <TextInput 
-            autoFocus={false} 
-            onChangeText={this.onTextAnwserChanged}
-            value={answer}
-            underlineColorAndroid={'transparent'}
-            editable 
-            style={styles.textInput}
-            placeholder={"Type an answer"}
-            maxLength={100} />
+        <TextInput
+          autoFocus={false}
+          onChangeText={this.onTextAnwserChanged}
+          value={answer}
+          underlineColorAndroid={'transparent'}
+          editable
+          style={styles.textInput}
+          placeholder={"Type an answer"}
+          maxLength={100} />
         {/* <MyText error>{errorMessage}</MyText> */}
-        <Button disabled={question==="" || answer==="" || errorMessageQuestion!==""} title="Save" onPress={this.saveCard} />
+        <View style={[styles.container, {  alignItems: 'center' }]}>
+          <MyButton
+            disabled={question === "" || answer === "" || errorMessageQuestion !== ""}
+            title="Save"
+            onPress={this.saveCard} />
+        </View>
+
       </View>
     )
   }
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
-    padding:20,
+    padding: 20,
   },
   textInput: {
     marginTop: 10,
@@ -91,7 +98,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (state, { navigation }) {
+function mapStateToProps(state, { navigation }) {
   const { deckTitle } = navigation.state.params
 
   return {
@@ -100,11 +107,11 @@ function mapStateToProps (state, { navigation }) {
   }
 }
 
-function mapDispatchToProps (dispatch, { navigation }) {
+function mapDispatchToProps(dispatch, { navigation }) {
   const { deckTitle } = navigation.state.params
   return {
     remove: () => dispatch(),
-    addCard: (card)  => 
+    addCard: (card) =>
       dispatch(addCard(deckTitle, card)),
     goBack: () => navigation.goBack(),
   }
