@@ -8,8 +8,9 @@ import { Text, StyleSheet, View, TextInput, Button, KeyboardAvoidingView, Toucha
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray, red, green, blue } from '../utils/colors'
-import animSource100 from './../assets/animations/animation-w550-h400.json';
-import animSource from './../assets/animations/animation-w512-h512.json';
+import animSource100 from './../assets/animations/animation-w550-h400.json'
+import animSource from './../assets/animations/animation-w512-h512.json'
+import MyButton from './controls/MyButton'
 
 function ScoreCard ({ animSource, prefix, text, score, onRestart}) {
   return (
@@ -65,10 +66,10 @@ class Quiz extends Component {
     if (card) {
       return (
         <View style={styles.container}>
-          <MyText>{questionIndex + 1}/{questionLength}</MyText>
+          <MyText style={{justifyContent:"flex-start",alignSelf:"flex-start"}}>{questionIndex + 1}/{questionLength}</MyText>
           <FlipCard style={{ flex: 1, alignSelf: "center", justifyContent: "center" }} question={card.question} answer={card.answer}></FlipCard>
-          <Button color={green} onPress={this.resultTrue} title="Correct" />
-          <Button color={red} onPress={this.resultFalse} title="Incorrect" />
+          <MyButton color={green} onPress={this.resultTrue} title="Correct" />
+          <MyButton color={red} onPress={this.resultFalse} title="Incorrect" />
         </View>
       )
     }
@@ -100,6 +101,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white, 
     padding: 20,
+    justifyContent:"center",
+    alignItems:"center"
   },
   centerText:{
     textAlign:"center"
