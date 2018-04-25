@@ -7,7 +7,7 @@ class MyText extends PureComponent {
     render() {
         const { h2, h1, children, style = {}, error } = this.props
         const myStyle = error ? baseStyles.error : h1 ? baseStyles.h1 : h2 ? baseStyles.h2 : baseStyles.text
-        return <Text style={[myStyle, style]}>{children}</Text>
+        return <Text style={[myStyle, ...style]}>{children}</Text>
     }
 
 }
