@@ -19,7 +19,7 @@ class ListCard extends PureComponent {
                     {...props} 
                     style={[styles.container, style]} > 
                     <TouchableOpacity onPress={this.itemPressed}>
-                        <MyText h1>
+                        <MyText h2>
                         {title} 
                         </MyText>
                         <MyText>
