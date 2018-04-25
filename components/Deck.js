@@ -3,6 +3,7 @@ import { View, Text, StyleSheet,Button  } from 'react-native'
 import { connect } from 'react-redux'
 import MyText from './controls/MyText'
 import { white } from '../utils/colors'
+import MyButton from './controls/MyButton'
 
 class Deck extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -24,10 +25,12 @@ class Deck extends Component {
         const {deckTitle, deck} = this.props;
         
         return  <View style={styles.container}>
-                    <MyText h1>{deckTitle}</MyText>
-                    <MyText>{deck.questions.length} cards</MyText>
-                    <Button onPress={this.addCardPressed} title={"Add Card"}></Button>
-                    <Button onPress={this.startQuizPressed} title={"Start Quiz"}></Button>
+                    <View style={[styles.container, {justifyContent:"center"}]}>
+                        <MyText h1>{deckTitle}</MyText>
+                        <MyText>{deck.questions.length} cards</MyText>
+                    </View>
+                    <MyButton invert onPress={this.addCardPressed} title={"Add Card"}></MyButton>
+                    <MyButton onPress={this.startQuizPressed} title={"Start Quiz"}></MyButton>
                 </View>
     }   
 }
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: white,
       padding:20,
-      alignItems: "center"
+      alignItems:"center"
     },
   })
   
