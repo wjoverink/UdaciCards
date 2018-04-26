@@ -4,7 +4,7 @@ import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray } from '../utils/colors'
-import Button from './controls/MyButton'
+import Button from './controls/MyButtons'
 import PropTypes from 'prop-types'
 
 /**

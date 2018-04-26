@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 import { connect } from 'react-redux'
 import MyText from './controls/MyText'
 import { white, blue } from '../utils/colors'
-import Button, {IconButton} from './controls/MyButton'
+import Button, {IconButton} from './controls/MyButtons'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import PropTypes from 'prop-types'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -23,7 +23,7 @@ class Deck extends Component {
         }
         return {
             title: `${deckTitle}`,
-            //headerRight: <IconButton onPress={this.editPressed} name='edit' iconStyle={{marginRight:20}}  /> 
+            headerRight: <IconButton onPress={this.editPressed} name='edit' iconStyle={{marginRight:20}}  /> 
         }
     }
     addCardPressed = () => {

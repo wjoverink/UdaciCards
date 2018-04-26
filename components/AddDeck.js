@@ -6,7 +6,7 @@ import { addDeck } from '../actions'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { loadDecks } from '../actions'
-import Button from './controls/MyButton'
+import Button from './controls/MyButtons'
 import PropTypes from 'prop-types'
 
 /**

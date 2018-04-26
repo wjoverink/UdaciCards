@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { white, black, gray, red, blue } from '../../utils/colors'
 import { StyleSheet, Platform, TouchableOpacity } from 'react-native'
-import Mytext, { baseStyles } from './MyText'
+import MyText, { baseStyles } from './MyText'
 import PropTypes from 'prop-types'
 import { MaterialIcons } from '@expo/vector-icons'
 
@@ -19,7 +19,7 @@ class BaseButton extends PureComponent {
                 style={style}
                 {...click}
                 {...props}>
-               {children}
+                {children}
             </TouchableOpacity>
         )
     }
@@ -34,17 +34,17 @@ class Button extends PureComponent {
         onPress: PropTypes.func.isRequired,
     }
     render() {
-        const { style = {}, title="", invert = false, color, disabled, ...props } = this.props
+        const { style = {}, title = "", invert = false, color, disabled, ...props } = this.props
         const newColor = !disabled ? color || blue : "#bbb"
         return (
-            <BaseButton 
-                style={[baseButtonStyles.button, ...style, { backgroundColor: invert ? white : newColor, borderColor: newColor}]} 
-                disabled={disabled} 
+            <BaseButton
+                style={[baseButtonStyles.button, ...style, { backgroundColor: invert ? white : newColor, borderColor: newColor }]}
+                disabled={disabled}
                 {...props}>
-                <Mytext 
+                <MyText
                     style={[baseStyles.text, { color: !invert ? white : newColor, textAlign: "center" }]}>
                     {title}
-                </Mytext>
+                </MyText>
             </BaseButton>
         )
     }
@@ -60,24 +60,38 @@ export class IconButton extends PureComponent {
     }
     render() {
         const { iconStyle = {}, disabled, name, size = 26, ...props } = this.props
-        const newColor = !disabled ? Platform.OS === 'ios'? blue : white : "#bbb"
+        const newColor = !disabled ? Platform.OS === 'ios' ? blue : white : "#bbb"
         return (
-            <BaseButton  
-                disabled={disabled}      
+            <BaseButton
+                disabled={disabled}
                 {...props}>
-               <MaterialIcons 
-                                name={name}
-                                size={26} 
-                                style={iconStyle} 
-                                color={Platform.OS === 'ios'? blue : white} />
+                <MaterialIcons
+                    name={name}
+                    size={26}
+                    style={iconStyle}
+                    color={Platform.OS === 'ios' ? blue : white} />
+            </BaseButton>
+        )
+    }
+}
+
+export class TextButton extends PureComponent {
+    static propTypes = {
+        onPress: PropTypes.func.isRequired,
+    }
+    render() {
+        const { onPress, style = {}, children } = this.props
+        return (
+            <BaseButton onPress={onPress}>
+                <MyText style={style}>{children}</MyText>
             </BaseButton>
         )
     }
 }
 
 export const baseButtonStyles = StyleSheet.create({
-    button: {     
-        width:200, 
+    button: {
+        width: 200,
         padding: 10,
         margin: 5,
         borderWidth: 1,

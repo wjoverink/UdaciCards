@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import MyText from './controls/MyText'
-import TextButton from './controls/TextButton'
+import { TextButton } from './controls/MyButtons'
 import { blue } from '../utils/colors'
 import { View } from 'react-native-animatable'
 import PropTypes from 'prop-types'
