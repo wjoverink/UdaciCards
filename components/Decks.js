@@ -6,10 +6,11 @@ import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
 import { AppLoading } from 'expo'
 import { white } from '../utils/colors'
-import { SearchBar, Card } from 'react-native-elements'
+import { SearchBar } from 'react-native-elements'
 import ListCard from './ListCard'
 import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import MyText from './controls/MyText';
 if (Platform.OS === 'android') {
   SafeAreaView.setStatusBarHeight(0);
 }
@@ -22,6 +23,7 @@ if (Platform.OS === 'android') {
 class Decks extends Component {
   state = {
     ready: false,
+    searchText :''
   }
 
   handleRefresh = () => {
@@ -43,8 +45,14 @@ class Decks extends Component {
     this.props.loadDecks()
   }
 
+  searchTextChanged = (text) => {
+    console.log("searchTextChanged",text)
+    this.setState({ searchText: text })
+  }
+
   renderHeader = ({ item }) => {
     return <SearchBar
+      onChangeText={this.searchTextChanged}
       inputStyle={styles.searchBarInput}
       containerStyle={styles.searchBar}
       lightTheme
@@ -72,9 +80,9 @@ class Decks extends Component {
 
   render() {
     const { decks } = this.props
-    const listDecks = Object.values(decks)
-    const { ready } = this.state
+    const { ready, searchText } = this.state
 
+    const  listDecks =  searchText ? Object.values(decks).filter(x => x.title.toLowerCase().includes(searchText.toLowerCase())) : Object.values(decks);
     return (
       <View style={[styles.container, styles.viewContainer]}>
         <FlatList
@@ -86,7 +94,7 @@ class Decks extends Component {
           onRefresh={this.handleRefresh}
           stickyHeaderIndices={[0]}
         //ListFooterComponent={this.ListFooterComponent}
-        />
+        />             
       </View>
     )
   }
