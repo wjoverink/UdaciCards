@@ -1,16 +1,26 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import MyText from './controls/MyText'
 import TextButton from './controls/TextButton'
 import { blue } from '../utils/colors'
 import { View } from 'react-native-animatable';
 
-class FlipCard extends PureComponent {
+class FlipCard extends Component {
   state = {
     flip: false,
   }
 
   handleViewRef = ref => this.view = ref;
+
+  componentWillReceiveProps(props) {
+    if (props.question !== this.props.question) {
+      this.setState({ flip: false })
+    }
+  }
+
+  getDerivedStateFromProps(nextProps, prevState) {
+    console.log("getDerivedStateFromProps")
+  }
 
   flip = () => {
     this.view.flipOutY(500).then((endState) => {
