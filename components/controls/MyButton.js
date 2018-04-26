@@ -2,11 +2,18 @@ import React, { PureComponent } from 'react'
 import { white, black, gray, red, blue } from '../../utils/colors'
 import { StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import Mytext, { baseStyles } from './MyText'
+import PropTypes from 'prop-types'
 
 class MyButton extends PureComponent {
-
+    static propTypes = {
+        disabled: PropTypes.bool,
+        color: PropTypes.string,
+        invert: PropTypes.bool,
+        title: PropTypes.string,
+        onPress: PropTypes.func.isRequired,
+    }
     render() {
-        const { style = {}, title, invert = false, color, disabled = false, onPress, ...props } = this.props
+        const { style = {}, title="", invert = false, color, disabled = false, onPress, ...props } = this.props
         const newColor = !disabled ? color || blue : "#bbb"
         const click = !disabled ? { onPress: onPress } : {}
         return (

@@ -5,12 +5,17 @@ import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray } from '../utils/colors'
 import MyButton from './controls/MyButton'
+import PropTypes from 'prop-types'
 
 /**
 * @description Represents the Decks view
 * @constructor
 */
 class AddCard extends Component {
+  static propTypes = {
+    deck: PropTypes.object.isRequired,
+  }
+
   state = {
     question: '',
     answer: '',

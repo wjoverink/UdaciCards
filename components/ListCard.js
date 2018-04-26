@@ -3,9 +3,16 @@ import { StyleSheet, TouchableOpacity } from 'react-native'
 import { View } from 'react-native-animatable'
 import MyText from './controls/MyText'
 import { white } from '../utils/colors'
-
+import PropTypes from 'prop-types'
 
 class ListCard extends PureComponent {
+    static propTypes = {
+        questions: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        dataItem: PropTypes.object.isRequired,
+        onPress: PropTypes.func.isRequired
+    }
+
     itemPressed = () => {
         if (this.props.onPress) {
             this.props.onPress(this.props.dataItem)

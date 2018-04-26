@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, FlatList } from 'react-native'
-import { View } from 'react-native-animatable';
+import { View } from 'react-native-animatable'
 import { loadDecks } from '../actions'
 import { getDecks } from '../utils/api'
 import { connect } from 'react-redux'
@@ -8,9 +8,10 @@ import { AppLoading } from 'expo'
 import { white } from '../utils/colors'
 import { SearchBar } from 'react-native-elements'
 import ListCard from './ListCard'
-import { Platform } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
-import MyText from './controls/MyText';
+import { Platform } from 'react-native'
+import PropTypes from 'prop-types'
+import MyText from './controls/MyText'
+import { SafeAreaView } from 'react-navigation'
 if (Platform.OS === 'android') {
   SafeAreaView.setStatusBarHeight(0);
 }
@@ -21,6 +22,11 @@ if (Platform.OS === 'android') {
 * @constructor
 */
 class Decks extends Component {
+  static propTypes = {
+    decks: PropTypes.object.isRequired,
+    navigation:  PropTypes.object.isRequired,
+  }
+
   state = {
     ready: false,
     searchText :''
@@ -46,7 +52,6 @@ class Decks extends Component {
   }
 
   searchTextChanged = (text) => {
-    console.log("searchTextChanged",text)
     this.setState({ searchText: text })
   }
 

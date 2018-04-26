@@ -1,8 +1,12 @@
 import React, { PureComponent } from 'react'
 import { TouchableOpacity } from 'react-native'
 import MyText from './MyText'
+import PropTypes from 'prop-types'
 
 class TextButton extends PureComponent {
+  static propTypes = {
+    onPress: PropTypes.func.isRequired,
+  }
   render() {
     const { onPress, style = {}, children } = this.props
     return (

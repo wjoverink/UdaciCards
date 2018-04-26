@@ -4,9 +4,15 @@ import { connect } from 'react-redux'
 import MyText from './controls/MyText'
 import { white } from '../utils/colors'
 import MyButton from './controls/MyButton'
-import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import PropTypes from 'prop-types'
 
 class Deck extends Component {
+    static propTypes = {
+        deckTitle: PropTypes.string.isRequired,
+        deck: PropTypes.object.isRequired,
+    }
+
     static navigationOptions = ({ navigation }) => {
         const { deckTitle } = navigation.state.params
         return {

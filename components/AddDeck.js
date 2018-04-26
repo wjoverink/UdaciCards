@@ -7,21 +7,26 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { loadDecks } from '../actions'
 import MyButton from './controls/MyButton'
+import PropTypes from 'prop-types'
 
 /**
 * @description Represents the Decks view
 * @constructor
 */
 class NewDeck extends Component {
-  pressedSave = () => {
-    this.props.addDeck(this.state.title)
-    this.setState({ title: '' })
-    this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDecks' }))
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    decks: PropTypes.object.isRequired,
   }
 
   state = {
     title: '',
+  }
 
+  pressedSave = () => {
+    this.props.addDeck(this.state.title)
+    this.setState({ title: '' })
+    this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDecks' }))
   }
 
   onTextChanged = (title) => {

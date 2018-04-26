@@ -1,10 +1,18 @@
 import React, { Component, PureComponent } from 'react'
 import MyText from './MyText'
 import { View } from 'react-native'
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
+import PropTypes from 'prop-types'
 
 
 class CounterText extends Component {
+    static propTypes = {
+        start: PropTypes.number,
+        end: PropTypes.number,
+        steps: PropTypes.number,
+        prefix: PropTypes.string,
+    }
+
     state = {
         index: 1,
         finished: false

@@ -11,6 +11,8 @@ import { white, gray, red, green, blue } from '../utils/colors'
 import animSource100 from './../assets/animations/animation-w550-h400.json'
 import animSource from './../assets/animations/animation-w512-h512.json'
 import MyButton from './controls/MyButton'
+import PropTypes from 'prop-types'
+
 
 function ScoreCard({ animSource, prefix, text, score, onRestart }) {
   return (
@@ -29,6 +31,10 @@ function ScoreCard({ animSource, prefix, text, score, onRestart }) {
 * @constructor
 */
 class Quiz extends Component {
+  static propTypes = {
+    deck: PropTypes.object.isRequired,
+  }
+
   state = {
     questionIndex: 0,
     correctCount: 0
@@ -67,9 +73,9 @@ class Quiz extends Component {
       return (
         <View style={styles.viewcontainer}>
           <MyText style={{ justifyContent: "flex-start", alignSelf: "flex-start" }}>{questionIndex + 1}/{questionLength}</MyText>
-          <FlipCard 
-            style={{ flex: 1, alignSelf: "center", justifyContent: "center" }} 
-            question={card.question} 
+          <FlipCard
+            style={{ flex: 1, alignSelf: "center", justifyContent: "center" }}
+            question={card.question}
             answer={card.answer}>
           </FlipCard>
           <MyButton color={green} onPress={this.resultTrue} title="Correct" />

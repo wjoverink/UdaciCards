@@ -3,11 +3,18 @@ import { StyleSheet } from 'react-native'
 import MyText from './controls/MyText'
 import TextButton from './controls/TextButton'
 import { blue } from '../utils/colors'
-import { View } from 'react-native-animatable';
+import { View } from 'react-native-animatable'
+import PropTypes from 'prop-types'
 
 class FlipCard extends Component {
   state = {
     flip: false,
+  }
+
+  static propTypes = {
+    question: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
+    style: PropTypes.object,
   }
 
   handleViewRef = ref => this.view = ref;

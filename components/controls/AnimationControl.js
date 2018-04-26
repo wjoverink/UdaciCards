@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { DangerZone } from 'expo';
-let { Lottie } = DangerZone;
+import { DangerZone } from 'expo'
+import PropTypes from 'prop-types'
+let { Lottie } = DangerZone
 
 class AnimationControl extends Component {
+    static propTypes = {
+        source: PropTypes.object.isRequired,
+    }
+
     onLottieLoad = () => {
         const { start, end } = this.props
         if (start >= 0 && end >= 0) {
