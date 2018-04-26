@@ -45,7 +45,6 @@ class NewDeck extends Component {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <MyText h1>Add a deck</MyText>
-        {/* <MyText>What is the title of your new deck?</MyText> */}
         <View>
           <TextInput
             style={{fontSize:16, color:gray}}
@@ -59,8 +58,7 @@ class NewDeck extends Component {
         </View>
         <MyText error>{errorMessage}</MyText>
         <View style={styles.saveButtonView}>
-          <MyButton 
-            
+          <MyButton             
             disabled={errorMessage !== "" || title === ""} 
             onPress={this.pressedSave} 
             title="Save" />

@@ -130,7 +130,6 @@ function mapDispatchToProps(dispatch, { navigation }) {
     goBack: () => navigation.goBack(),
   }
 }
-// export default AddCard
 
 export default connect(
   mapStateToProps,
