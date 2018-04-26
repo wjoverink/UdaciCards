@@ -4,7 +4,7 @@ import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray } from '../utils/colors'
-import MyButton from './controls/MyButton'
+import Button from './controls/MyButton'
 import PropTypes from 'prop-types'
 
 /**
@@ -69,7 +69,7 @@ class AddCard extends Component {
           placeholder={"Type an answer"}
           maxLength={100} />
         <View style={[styles.container, { alignItems: 'center' }]}>
-          <MyButton
+          <Button
             disabled={question === "" || answer === "" || errorMessageQuestion !== ""}
             title="Save"
             onPress={this.saveCard} />

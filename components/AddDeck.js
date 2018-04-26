@@ -6,7 +6,7 @@ import { addDeck } from '../actions'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { loadDecks } from '../actions'
-import MyButton from './controls/MyButton'
+import Button from './controls/MyButton'
 import PropTypes from 'prop-types'
 
 /**
@@ -61,7 +61,7 @@ class NewDeck extends Component {
         </View>
         <MyText error>{errorMessage}</MyText>
         <View style={styles.saveButtonView}>
-          <MyButton
+          <Button
             disabled={errorMessage !== "" || title === ""}
             onPress={this.pressedSave}
             title="Save" />

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, } from 'react-native'
+import { View, StyleSheet, Platform, TouchableOpacity} from 'react-native'
 import { connect } from 'react-redux'
 import MyText from './controls/MyText'
-import { white } from '../utils/colors'
-import MyButton from './controls/MyButton'
+import { white, blue } from '../utils/colors'
+import Button, {IconButton} from './controls/MyButton'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 import PropTypes from 'prop-types'
+import { MaterialIcons } from '@expo/vector-icons'
 
 class Deck extends Component {
     static propTypes = {
@@ -13,13 +14,18 @@ class Deck extends Component {
         deck: PropTypes.object.isRequired,
     }
 
+   
+
     static navigationOptions = ({ navigation }) => {
         const { deckTitle } = navigation.state.params
+        editPressed = () => {
+            navigation.navigate('EditDeck', { deckTitle: deckTitle })
+        }
         return {
-            title: `${deckTitle}`
+            title: `${deckTitle}`,
+            //headerRight: <IconButton onPress={this.editPressed} name='edit' iconStyle={{marginRight:20}}  /> 
         }
     }
-
     addCardPressed = () => {
         this.props.navigation.navigate('AddCard', { deckTitle: this.props.deckTitle })
     }
@@ -37,8 +43,8 @@ class Deck extends Component {
                 <MyText h1>{deckTitle}</MyText>
                 <MyText>{deck.questions.length} cards</MyText>
             </View>
-            <MyButton invert onPress={this.addCardPressed} title={"Add Card"}></MyButton>
-            <MyButton onPress={this.startQuizPressed} title={"Start Quiz"}></MyButton>
+            <Button invert onPress={this.addCardPressed} title={"Add Card"}></Button>
+            <Button disabled={deck.questions.length===0} onPress={this.startQuizPressed} title={"Start Quiz"}></Button>
         </View>
     }
 }

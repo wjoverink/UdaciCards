@@ -25,7 +25,7 @@ class BaseButton extends PureComponent {
     }
 }
 
-class MyButton extends PureComponent {
+class Button extends PureComponent {
     static propTypes = {
         disabled: PropTypes.bool,
         color: PropTypes.string,
@@ -49,7 +49,6 @@ class MyButton extends PureComponent {
         )
     }
 }
-
 
 export class IconButton extends PureComponent {
     static propTypes = {
@@ -100,5 +99,5 @@ export const baseButtonStyles = StyleSheet.create({
     }
 });
 
-export default MyButton;
+export default Button;
 

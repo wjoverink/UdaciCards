@@ -10,7 +10,7 @@ import { addCard } from '../actions'
 import { white, gray, red, green, blue } from '../utils/colors'
 import animSource100 from './../assets/animations/animation-w550-h400.json'
 import animSource from './../assets/animations/animation-w512-h512.json'
-import MyButton from './controls/MyButton'
+import Button from './controls/MyButton'
 import PropTypes from 'prop-types'
 
 
@@ -78,8 +78,8 @@ class Quiz extends Component {
             question={card.question}
             answer={card.answer}>
           </FlipCard>
-          <MyButton color={green} onPress={this.resultTrue} title="Correct" />
-          <MyButton color={red} onPress={this.resultFalse} title="Incorrect" />
+          <Button color={green} onPress={this.resultTrue} title="Correct" />
+          <Button color={red} onPress={this.resultFalse} title="Incorrect" />
         </View>
       )
     }

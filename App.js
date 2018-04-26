@@ -9,6 +9,7 @@ import { blue, white } from './utils/colors'
 import Decks from './components/Decks'
 import NewDeck from './components/AddDeck'
 import Deck from './components/Deck'
+import EditDeck from './components/EditDeck'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import thunk from 'redux-thunk'
@@ -48,8 +49,7 @@ const Tabs = TabNavigator({
       fontSize: 16,
       fontWeight: 'bold'
     },
-    style: {
-      
+    style: {      
       backgroundColor: Platform.OS === 'ios' ? white : blue,
     }
   }
@@ -61,6 +61,15 @@ const MainNavigator = StackNavigator({
   },
   EntryDetail: {
     screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      },
+    }
+  },
+  EditDeck: {
+    screen: EditDeck,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
