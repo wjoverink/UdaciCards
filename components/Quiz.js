@@ -4,7 +4,7 @@ import AnimationControl from './controls/AnimationControl'
 import CounterText from './controls/CounterText'
 import TextButton from './controls/TextButton'
 import FlipCard from './FlipCard'
-import { Text, StyleSheet, View, TextInput, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray, red, green, blue } from '../utils/colors'
@@ -15,7 +15,7 @@ import MyButton from './controls/MyButton'
 function ScoreCard({ animSource, prefix, text, score, onRestart }) {
   return (
     <View style={styles.container}>
-      <View style={{alignItems: "center"}}>
+      <View style={{ alignItems: "center" }}>
         <MyText style={styles.centerText} h1>{text}</MyText>
         <CounterText style={styles.centerText} prefix={prefix} start={0} end={score} steps={score / 9} />
       </View>
@@ -24,7 +24,6 @@ function ScoreCard({ animSource, prefix, text, score, onRestart }) {
     </View>
   )
 }
-
 /**
 * @description Represents the Quiz view
 * @constructor

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MyText from './controls/MyText'
-import { View, Text, StyleSheet, TextInput, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 import { white, gray } from '../utils/colors'
@@ -41,9 +41,6 @@ class AddCard extends Component {
     const errorMessageQuestion = this.props.deck.questions.filter(item =>
       item.question.toLowerCase() === question.toLowerCase()
     ).length > 0 ? "Title already exists" : ""
-    // const errorMessage = this.props.deck.questions.filter(item=> 
-    //   item.answer.toLowerCase() === answer.toLowerCase()
-    //   ).length>0 ? "Title already exists" : ""
 
     return (
       <View style={styles.container}>
@@ -66,8 +63,7 @@ class AddCard extends Component {
           style={styles.textInput}
           placeholder={"Type an answer"}
           maxLength={100} />
-        {/* <MyText error>{errorMessage}</MyText> */}
-        <View style={[styles.container, {  alignItems: 'center' }]}>
+        <View style={[styles.container, { alignItems: 'center' }]}>
           <MyButton
             disabled={question === "" || answer === "" || errorMessageQuestion !== ""}
             title="Save"
@@ -116,7 +112,6 @@ function mapDispatchToProps(dispatch, { navigation }) {
     goBack: () => navigation.goBack(),
   }
 }
-// export default AddCard
 
 export default connect(
   mapStateToProps,

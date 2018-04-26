@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, FlatList } from 'react-native'
 import { View } from 'react-native-animatable';
 import { loadDecks } from '../actions'
 import { getDecks } from '../utils/api'
@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import { AppLoading } from 'expo'
 import { white } from '../utils/colors'
 import { SearchBar, Card } from 'react-native-elements'
-import MyText from './controls/MyText'
 import ListCard from './ListCard'
 import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
@@ -36,44 +35,39 @@ class Decks extends Component {
     }
   }
 
-  getDerivedStateFromProps(nextProps, prevState){
+  getDerivedStateFromProps(nextProps, prevState) {
     console.log("getDerivedStateFromProps")
-    // if (nextProps.decks){
-    //   return {
-    //     ready:true
-    //   }
-    // }
   }
 
-  componentDidMount() { 
+  componentDidMount() {
     this.props.loadDecks()
   }
 
   renderHeader = ({ item }) => {
     return <SearchBar
-            inputStyle={styles.searchBarInput}  
-            containerStyle={styles.searchBar} 
-            lightTheme 
-            placeholder='Type Here...' />;
+      inputStyle={styles.searchBarInput}
+      containerStyle={styles.searchBar}
+      lightTheme
+      placeholder='Type Here...' />;
   }
 
-  ListFooterComponent= ({ item }) => {
-    return <ListCard title={"Test"} questions={0}/>;
+  ListFooterComponent = ({ item }) => {
+    return <ListCard title={"Test"} questions={0} />;
   }
 
-  renderItem = ({item,index}) => {
-    return <ListCard 
-      onPress={this.itemPressed} 
-      dataItem={item} 
-      title={item.title} 
-      style={{padding:9}} 
-      questions={item.questions.length} 
-      delay={index*40}>
-      </ListCard>;
+  renderItem = ({ item, index }) => {
+    return <ListCard
+      onPress={this.itemPressed}
+      dataItem={item}
+      title={item.title}
+      style={{ padding: 9 }}
+      questions={item.questions.length}
+      delay={index * 40}>
+    </ListCard>;
   }
 
   itemPressed = (item) => {
-    this.props.navigation.navigate('EntryDetail', {deckTitle: item.title})
+    this.props.navigation.navigate('EntryDetail', { deckTitle: item.title })
   }
 
   render() {
@@ -91,7 +85,7 @@ class Decks extends Component {
           refreshing={!ready}
           onRefresh={this.handleRefresh}
           stickyHeaderIndices={[0]}
-          //ListFooterComponent={this.ListFooterComponent}
+        //ListFooterComponent={this.ListFooterComponent}
         />
       </View>
     )
@@ -111,10 +105,10 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent'
   },
-  searchBarInput:{
+  searchBarInput: {
     backgroundColor: white,
-    borderWidth:1,
-    borderColor:"gray"
+    borderWidth: 1,
+    borderColor: "gray"
   },
 });
 

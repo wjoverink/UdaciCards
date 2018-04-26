@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react'
-import {TouchableOpacity } from 'react-native'
+import React, { PureComponent } from 'react'
+import { TouchableOpacity } from 'react-native'
 import MyText from './MyText'
 
 class TextButton extends PureComponent {

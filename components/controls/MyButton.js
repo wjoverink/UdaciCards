@@ -1,30 +1,29 @@
 import React, { PureComponent } from 'react'
 import { white, black, gray, red, blue } from '../../utils/colors'
-import { StyleSheet, Text, Button, Platform, TouchableOpacity } from 'react-native'
+import { StyleSheet, Platform, TouchableOpacity } from 'react-native'
 import Mytext, { baseStyles } from './MyText'
 
 class MyButton extends PureComponent {
 
     render() {
-        const { style = {}, title, invert = false, color, disabled=false, onPress, ...props } = this.props
+        const { style = {}, title, invert = false, color, disabled = false, onPress, ...props } = this.props
         const newColor = !disabled ? color || blue : "#bbb"
-        const click = !disabled ? {onPress:onPress} : {}
+        const click = !disabled ? { onPress: onPress } : {}
         return (
             <TouchableOpacity
-            disabled={disabled} 
-            style={
-                    [baseButtonStyles.button, 
-                    { backgroundColor: invert ? white : newColor, borderColor:newColor }
-                    , ...style]
-                } 
-            {...click}
-            {...props}>
+                disabled={disabled}
+                style={
+                    [baseButtonStyles.button,
+                    { backgroundColor: invert ? white : newColor, borderColor: newColor }
+                        , ...style]
+                }
+                {...click}
+                {...props}>
                 <Mytext style={[baseStyles.text, { color: !invert ? white : newColor, textAlign: "center" }]} >{title}</Mytext>
             </TouchableOpacity>
         )
     }
 }
-
 
 export const baseButtonStyles = StyleSheet.create({
     button: {

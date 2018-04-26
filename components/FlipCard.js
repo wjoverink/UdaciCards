@@ -1,15 +1,13 @@
 import React, { PureComponent } from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import MyText from './controls/MyText'
 import TextButton from './controls/TextButton'
-import { white, gray, blue } from '../utils/colors'
+import { blue } from '../utils/colors'
 import { View } from 'react-native-animatable';
 
 class FlipCard extends PureComponent {
   state = {
     flip: false,
-    // flipAnimationQuestion: "flipInY",
-    // flipAnimationAnswer: "flipOutY"
   }
 
   handleViewRef = ref => this.view = ref;
@@ -42,8 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    justifyContent:"center",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center"
   }
 })
 export default FlipCard

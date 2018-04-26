@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from 'react'
-import { StyleSheet, FlatList, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { View } from 'react-native-animatable'
 import MyText from './controls/MyText'
 import { white } from '../utils/colors'
@@ -7,34 +7,30 @@ import { white } from '../utils/colors'
 
 class ListCard extends PureComponent {
     itemPressed = () => {
-        if (this.props.onPress){
+        if (this.props.onPress) {
             this.props.onPress(this.props.dataItem)
         }
     }
 
     render() {
-        const { questions, title, style, onPress, dataItem, ...props} = this.props
-        return  <View 
-                    animation="bounceInDown"                     
-                    {...props} 
-                    style={[styles.container, style]} > 
-                    <TouchableOpacity onPress={this.itemPressed}>
-                        <MyText h2>
-                        {title} 
-                        </MyText>
-                        <MyText>
-                        {questions} cards
-                        </MyText>
-                    </TouchableOpacity>
-                </View>
-    }   
+        const { questions, title, style, onPress, dataItem, ...props } = this.props
+        return <View
+            animation="bounceInDown"
+            {...props}
+            style={[styles.container, style]} >
+            <TouchableOpacity onPress={this.itemPressed}>
+                <MyText h2>{title}</MyText>
+                <MyText> {questions} cards</MyText>
+            </TouchableOpacity>
+        </View>
+    }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: white
+        flex: 1,
+        backgroundColor: white
     }
-  });
-  
+});
+
 export default ListCard;

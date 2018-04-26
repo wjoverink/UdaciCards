@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-//import Animation from 'lottie-react-native';
 import { DangerZone } from 'expo';
 let { Lottie } = DangerZone;
 

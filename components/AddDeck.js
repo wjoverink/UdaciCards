@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { white, black, gray} from '../utils/colors'
-import { View, Text, StyleSheet, TextInput, Button, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { white, gray } from '../utils/colors'
+import { View, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native'
 import MyText from './controls/MyText'
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
@@ -14,8 +14,6 @@ import MyButton from './controls/MyButton'
 */
 class NewDeck extends Component {
   pressedSave = () => {
-    console.log("pressedSave")
-
     this.props.addDeck(this.state.title)
     this.setState({ title: '' })
     this.props.navigation.dispatch(NavigationActions.back({ key: 'NewDecks' }))
@@ -47,7 +45,7 @@ class NewDeck extends Component {
         <MyText h1>Add a deck</MyText>
         <View>
           <TextInput
-            style={{fontSize:16, color:gray}}
+            style={{ fontSize: 16, color: gray }}
             autoFocus={true}
             onChangeText={this.onTextChanged}
             value={title}
@@ -58,9 +56,9 @@ class NewDeck extends Component {
         </View>
         <MyText error>{errorMessage}</MyText>
         <View style={styles.saveButtonView}>
-          <MyButton             
-            disabled={errorMessage !== "" || title === ""} 
-            onPress={this.pressedSave} 
+          <MyButton
+            disabled={errorMessage !== "" || title === ""}
+            onPress={this.pressedSave}
             title="Save" />
         </View>
       </KeyboardAvoidingView >
@@ -76,7 +74,7 @@ const styles = StyleSheet.create({
   },
   saveButtonView: {
     alignItems: 'center',
-    paddingTop:40
+    paddingTop: 40
   }
 })
 
