@@ -10,7 +10,8 @@ class MyButton extends PureComponent {
         const newColor = !disabled ? color || blue : "#bbb"
         const click = !disabled ? {onPress:onPress} : {}
         return (
-            <TouchableOpacity 
+            <TouchableOpacity
+            disabled={disabled} 
             style={
                     [baseButtonStyles.button, 
                     { backgroundColor: invert ? white : newColor, borderColor:newColor }
