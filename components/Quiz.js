@@ -53,7 +53,6 @@ class Quiz extends Component {
   }
 
   restartQuiz = () => {
-    console.log("restartQuiz")
     this.setState({ questionIndex: 0, correctCount: 0 })
   }
 
