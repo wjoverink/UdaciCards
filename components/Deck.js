@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import MyText from './controls/MyText'
 import { white } from '../utils/colors'
 import MyButton from './controls/MyButton'
+import {clearLocalNotification, setLocalNotification} from '../utils/helpers'
 
 class Deck extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -18,6 +19,7 @@ class Deck extends Component {
     }
 
     startQuizPressed = () => {
+        clearLocalNotification().then(setLocalNotification)
         this.props.navigation.navigate('Quiz', { deckTitle: this.props.deckTitle })
     }
 

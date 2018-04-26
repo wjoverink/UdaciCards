@@ -13,6 +13,7 @@ import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import thunk from 'redux-thunk'
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
+import { setLocalNotification } from './utils/helpers'
 
 function CardsStatusBar ({backgroundColor, ...props}) {
   return (
@@ -90,7 +91,9 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
-  
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
