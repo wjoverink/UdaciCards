@@ -19,7 +19,7 @@ class Deck extends Component {
     static navigationOptions = ({ navigation }) => {
         const { deckTitle } = navigation.state.params
         editPressed = () => {
-            navigation.navigate('EditDeck', { deckTitle: deckTitle })
+            navigation.navigate('EditDeck', { deckTitle: deckTitle, navstate:navigation.state })
         }
         return {
             title: `${deckTitle}`,
@@ -37,14 +37,15 @@ class Deck extends Component {
 
     render() {
         const { deckTitle, deck } = this.props;
+        const totalQuestions = deck ? deck.questions.length : 0
 
         return <View style={styles.container}>
             <View style={[styles.container, { justifyContent: "center" }]}>
                 <MyText h1>{deckTitle}</MyText>
-                <MyText>{deck.questions.length} cards</MyText>
+                <MyText>{totalQuestions} cards</MyText>
             </View>
             <Button invert onPress={this.addCardPressed} title={"Add Card"}></Button>
-            <Button disabled={deck.questions.length===0} onPress={this.startQuizPressed} title={"Start Quiz"}></Button>
+            <Button disabled={totalQuestions===0} onPress={this.startQuizPressed} title={"Start Quiz"}></Button>
         </View>
     }
 }

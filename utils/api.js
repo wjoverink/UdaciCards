@@ -38,6 +38,7 @@ function parseDecks(results) {
 }
 
 function saveDecks(decks) {
+    console.log("api.saveDecks")   
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
 }
 

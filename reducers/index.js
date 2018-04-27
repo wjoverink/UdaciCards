@@ -1,21 +1,30 @@
-import { LOAD_DECKS, ADD_DECK, ADD_CARD } from '../actions'
+import { LOAD_DECKS, ADD_DECK, ADD_CARD, UPDATE_DECK } from '../actions'
 
-function entries (state = {}, action) {
+function entries(state = {}, action) {
   switch (action.type) {
-    case LOAD_DECKS :
+    case LOAD_DECKS:
       return {
         ...state,
         ...action.decks,
       }
-    case ADD_DECK :
+    case ADD_DECK:
       return {
         ...state,
-        [action.deckTitle] :{
-            title: action.deckTitle,
-            questions: []
+        [action.deckTitle]: {
+          title: action.deckTitle,
+          questions: []
         }
       }
-    case ADD_CARD :
+    case UPDATE_DECK:
+      var newState = {
+        ...state
+      }
+      delete newState[action.deckTitle]
+      newState[action.card.title] = {
+        ...action.card
+      }
+      return newState
+    case ADD_CARD:
       return {
         ...state,
         [action.deckTitle]: {
@@ -26,7 +35,7 @@ function entries (state = {}, action) {
           ]
         }
       }
-    default :
+    default:
       return state
   }
 }

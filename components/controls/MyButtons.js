@@ -57,10 +57,11 @@ export class IconButton extends PureComponent {
         size: PropTypes.number,
         onPress: PropTypes.func.isRequired,
         iconStyle: PropTypes.object,
+        color: PropTypes.string
     }
     render() {
-        const { iconStyle = {}, disabled, name, size = 26, ...props } = this.props
-        const newColor = !disabled ? Platform.OS === 'ios' ? blue : white : "#bbb"
+        const { color, iconStyle = {}, disabled, name, size = 26, ...props } = this.props
+        const newColor = !disabled ? color || Platform.OS === 'ios' ? blue : white : "#bbb"
         return (
             <BaseButton
                 disabled={disabled}
@@ -69,7 +70,7 @@ export class IconButton extends PureComponent {
                     name={name}
                     size={26}
                     style={iconStyle}
-                    color={Platform.OS === 'ios' ? blue : white} />
+                    color={newColor} />
             </BaseButton>
         )
     }
