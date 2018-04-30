@@ -1,4 +1,4 @@
-import { LOAD_DECKS, ADD_DECK, ADD_CARD, UPDATE_DECK } from '../actions'
+import { LOAD_DECKS, ADD_DECK, ADD_CARD, UPDATE_DECK, DELETE_CARD, DELETE_DECK } from '../actions'
 
 function entries(state = {}, action) {
   switch (action.type) {
@@ -35,6 +35,22 @@ function entries(state = {}, action) {
           ]
         }
       }
+    case DELETE_CARD:
+      return {
+        ...state,
+        [action.deckTitle]: {
+          ...state[action.deckTitle],
+          questions: [
+            ...state[action.deckTitle].questions.filter(x => x.question !== action.question),
+          ]
+        }
+      }
+    case DELETE_DECK:
+      var newState = {
+        ...state
+      }
+      delete newState[action.deckTitle]
+      return newState
     default:
       return state
   }

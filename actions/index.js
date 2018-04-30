@@ -4,17 +4,19 @@ export const LOAD_DECKS = 'LOAD_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
 export const UPDATE_DECK = 'UPDATE_DECK'
+export const DELETE_CARD = 'DELETE_CARD'
+export const DELETE_DECK = 'DELETE_DECK'
 
 
 export const loadDecks = () => dispatch => {
   console.log("loadDecks")
-    Api.getDecksWithoutStorage().then(payload => {
-      console.log("getDecks")
-      dispatch({type: LOAD_DECKS, decks: payload})
-    })
-  }
+  Api.getDecks().then(payload => {
+    console.log("getDecks")
+    dispatch({ type: LOAD_DECKS, decks: payload })
+  })
+}
 
-export function addDeck (deckTitle) {
+export function addDeck(deckTitle) {
   //TODO:API CALL
   return {
     type: ADD_DECK,
@@ -22,7 +24,7 @@ export function addDeck (deckTitle) {
   }
 }
 
-export function updateDeck (deckTitle, card) {
+export function updateDeck(deckTitle, card) {
   //TODO:API CALL
   return {
     type: UPDATE_DECK,
@@ -31,12 +33,29 @@ export function updateDeck (deckTitle, card) {
   }
 }
 
-export function addCard (deckTitle, card) {
+export function deleteCard(deckTitle, question) {
+  //TODO:API CALL
+  return {
+    type: DELETE_CARD,
+    deckTitle,
+    question
+  }
+}
+
+export function deleteDeck(deckTitle) {
+  //TODO:API CALL
+  return {
+    type: DELETE_DECK,
+    deckTitle,
+  }
+}
+
+export function addCard(deckTitle, card) {
   console.log("addCard", deckTitle, card)
   //TODO:API CALL
-    return {
-      type: ADD_CARD,
-      deckTitle,
-      card
-    }
+  return {
+    type: ADD_CARD,
+    deckTitle,
+    card
   }
+}

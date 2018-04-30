@@ -11,7 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 class Deck extends Component {
     static propTypes = {
         deckTitle: PropTypes.string.isRequired,
-        deck: PropTypes.object.isRequired,
+        deck: PropTypes.object,
     }
 
    
