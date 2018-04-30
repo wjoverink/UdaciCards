@@ -9,7 +9,7 @@ export const DELETE_DECK = 'DELETE_DECK'
 
 
 export const loadDecks = () => dispatch => {
-  Api.getDecksWithoutStorage().then(payload => {
+  Api.getDecks().then(payload => {
     console.log("getDecks")
     dispatch({ type: LOAD_DECKS, decks: payload })
   })
