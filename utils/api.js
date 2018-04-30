@@ -32,51 +32,85 @@ function setDummyData() {
     return dummies
 }
 
-function parseDecks(results) { 
-    console.log("api.parseDecks")   
+function parseDecks(results) {
+    console.log("api.parseDecks")
     return (results) ? JSON.parse(results) : setDummyData()
 }
 
 function saveDecks(decks) {
-    console.log("api.saveDecks")   
+    console.log("api.saveDecks")
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
 }
 
 export function clearDecks() {
     console.log("api.clearDecks")
     AsyncStorage.clear()
-  }
+}
 
 export function getDecksWithoutStorage() {
     console.log("api.getDecks")
-    //return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
-    return new Promise((resolve, reject)=>resolve(setDummyData()))
+    return new Promise((resolve, reject) => resolve(setDummyData()))
 }
 
 export function getDecks() {
     console.log("api.getDecks")
     return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY).then(parseDecks)
+
 }
 
-export function getDeck(id) {
-   //TODO
+export function getDeck(deckTitle) {
+    getDecks().then((decks) => {
+        decks[deckTitle]
+    })
 }
 
-export function removeDeck(id) {
-    console.log("api.removeDeck")
-    //TODO
+export function removeDeck(deckTitle) {
+    getDecks().then((decks) => {
+        delete decks[deckTitle]
+        saveDecks(decks)
+    })
 }
+
+export function updateDeckTitle(deckTitle, deck) {
+    getDecks().then((decks) => {
+        if (decks[deckTitle]) {
+            delete decks[deckTitle]
+            decks[newDeckTitle] = deck
+            saveDecks(decks)
+        }
+    })
+}
+
 
 export function saveDeckTitle(deckTitle) {
-    //TODO
-    saveDecks(getDecks())
+    getDecks().then((decks) => {
+        if (!decks[deckTitle]) {
+            decks[deckTitle] = {
+                title: deckTitle,
+                questions: []
+            }
+            saveDecks(decks)
+        }
+    })
 }
 
 
 export function addCardToDeck(deckTitle, { question, answer }) {
-    //TODO
+    getDecks().then((decks) => {
+        if (decks[deckTitle] && decks[deckTitle]['questions']) {
+            decks[deckTitle]['questions'].push({ question, answer })
+        }
+        saveDecks(decks)
+    })
 }
 
-export function removeCard(id) {
-    //TODO
+export function removeCard(deckTitle, question) {
+    getDecks().then((decks) => {
+        if (decks[deckTitle] && decks[deckTitle]['questions']) {
+            decks[deckTitle]['questions'] = {
+                ...decks[deckTitle]['questions'].filter(x => x.question !== question)
+            }
+        }
+        saveDecks(decks)
+    })
 }

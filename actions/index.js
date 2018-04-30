@@ -9,15 +9,14 @@ export const DELETE_DECK = 'DELETE_DECK'
 
 
 export const loadDecks = () => dispatch => {
-  console.log("loadDecks")
-  Api.getDecks().then(payload => {
+  Api.getDecksWithoutStorage().then(payload => {
     console.log("getDecks")
     dispatch({ type: LOAD_DECKS, decks: payload })
   })
 }
 
 export function addDeck(deckTitle) {
-  //TODO:API CALL
+  Api.saveDeckTitle(deckTitle)
   return {
     type: ADD_DECK,
     deckTitle,
@@ -25,7 +24,7 @@ export function addDeck(deckTitle) {
 }
 
 export function updateDeck(deckTitle, card) {
-  //TODO:API CALL
+  Api.updateDeckTitle(deckTitle,card)
   return {
     type: UPDATE_DECK,
     deckTitle,
@@ -34,7 +33,7 @@ export function updateDeck(deckTitle, card) {
 }
 
 export function deleteCard(deckTitle, question) {
-  //TODO:API CALL
+  Api.removeCard(deckTitle,question)
   return {
     type: DELETE_CARD,
     deckTitle,
@@ -43,7 +42,7 @@ export function deleteCard(deckTitle, question) {
 }
 
 export function deleteDeck(deckTitle) {
-  //TODO:API CALL
+  Api.removeDeck(deckTitle)
   return {
     type: DELETE_DECK,
     deckTitle,
@@ -51,8 +50,7 @@ export function deleteDeck(deckTitle) {
 }
 
 export function addCard(deckTitle, card) {
-  console.log("addCard", deckTitle, card)
-  //TODO:API CALL
+  Api.addCardToDeck(deckTitle, card)
   return {
     type: ADD_CARD,
     deckTitle,
