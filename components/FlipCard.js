@@ -25,10 +25,6 @@ class FlipCard extends Component {
     }
   }
 
-  getDerivedStateFromProps(nextProps, prevState) {
-    console.log("getDerivedStateFromProps")
-  }
-
   flip = () => {
     this.view.flipOutY(500).then((endState) => {
       this.setState((prevState) => {

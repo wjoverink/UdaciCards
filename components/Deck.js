@@ -23,7 +23,7 @@ class Deck extends Component {
         }
         return {
             title: `${deckTitle}`,
-            headerRight: <IconButton onPress={this.editPressed} name='edit' iconStyle={{marginRight:20}}  /> 
+            headerRight: <TouchableOpacity onPress={this.editPressed} style={{marginRight:20}}><MaterialIcons name='edit' size={26} color={white} /></TouchableOpacity>
         }
     }
     addCardPressed = () => {

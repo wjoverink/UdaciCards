@@ -20,7 +20,9 @@ function ScoreCard({ animSource, prefix, text, score, onRestart }) {
         <MyText style={styles.centerText} h1>{text}</MyText>
         <CounterText style={styles.centerText} prefix={prefix} start={0} end={score} steps={score / 9} />
       </View>
-      <AnimationControl style={styles.container} source={animSource} />
+      <View style={styles.animContainer}>
+        <AnimationControl source={animSource} />
+      </View>
       <TextButton style={[styles.centerText, { color: blue }]} onPress={onRestart}>Restart Quiz</TextButton>
     </View>
   )
@@ -109,6 +111,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: white,
+    padding: 20,
+  },
+  animContainer:{
+    flex: 1,
     padding: 20,
   },
   viewcontainer: {

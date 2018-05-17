@@ -18,7 +18,7 @@ class MyText extends PureComponent {
 
 function baseFont() {
     return {
-        fontFamily: "Roboto",
+        // fontFamily: "Roboto",
         fontWeight: "normal",
     }
 }

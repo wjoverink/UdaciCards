@@ -43,10 +43,6 @@ class Decks extends Component {
     }
   }
 
-  getDerivedStateFromProps(nextProps, prevState) {
-    console.log("getDerivedStateFromProps")
-  }
-
   componentDidMount() {
     this.props.loadDecks()
   }
@@ -61,7 +57,7 @@ class Decks extends Component {
       inputStyle={styles.searchBarInput}
       containerStyle={styles.searchBar}
       lightTheme
-      placeholder='Type Here...' />;
+      placeholder='Search...' />;
   }
 
   ListFooterComponent = ({ item }) => {
@@ -114,12 +110,12 @@ const styles = StyleSheet.create({
     padding: 11,
   },
   searchBar: {
-    backgroundColor: white,
+
     borderBottomColor: 'transparent',
     borderTopColor: 'transparent'
   },
   searchBarInput: {
-    backgroundColor: white,
+
     borderWidth: 1,
     borderColor: "gray"
   },
