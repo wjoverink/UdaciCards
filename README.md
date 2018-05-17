@@ -30,7 +30,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 * [Redux Thunk](https://github.com/gaearon/redux-thunk)
 
 ## TESTING
-* App is tested on an Andriod Emulator
+* App was tested on an Andriod Emulator, because of circumstances the last commits are tested on ios-expo
 
 ## License
 Readable is released under the [MIT License](https://opensource.org/licenses/MIT).
