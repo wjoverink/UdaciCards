@@ -11,8 +11,8 @@ To get started developing right away:
 
 ### Set up frontend
 1. Git clone this repo: `git clone`
-1. Install dependencies: `npm install`
-1. Start frontend: `npm start`
+1. Install dependencies: `yarn`
+1. Start frontend: `yarn start`
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
